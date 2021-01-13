@@ -31,7 +31,5 @@ class Employee {
     return "Employee";
   }
 }
-// const newEmp = new Employee("bob", 1, "joe@joe.joe");
-// console.log(newEmp);
-// newEmp.getName();
+
 module.exports = Employee;
