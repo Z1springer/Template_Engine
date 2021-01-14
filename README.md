@@ -13,7 +13,7 @@ so that I have quick access to emails and GitHub profiles
 ### Screenshots and Video
 
 - Vid: https://drive.google.com/file/d/1zqoLuBRbd09DQLYuD0fy1eA95Q4apHqW/view
-- Pic:
+- Pic: ![image](https://user-images.githubusercontent.com/74688904/104553020-c32cc280-55ee-11eb-95d7-0dfb0fdad503.png)
 
 ### Dependencies:
 
