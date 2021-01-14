@@ -6,6 +6,7 @@ class Employee {
     this.name = name;
     this.id = id;
     this.email = email;
+    this.role = "Employee";
   }
 
   printStats() {
@@ -27,7 +28,7 @@ class Employee {
   }
 
   getRole() {
-    return "Employee";
+    return this.role;
   }
 }
 

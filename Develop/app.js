@@ -27,6 +27,13 @@ function generateTeam() {
         inquirer
           .prompt([
             {
+              type: "list",
+              message: "Employee Role:",
+              choices: ["Manager", "Engineer", "Intern"],
+              name: "role",
+              default: "Manager, Engineer, Intern",
+            },
+            {
               type: "input",
               message: "Employee Name:",
               name: "name",
@@ -43,13 +50,6 @@ function generateTeam() {
               message: "Employee ID:",
               name: "id",
               default: "1,2,3,4,5",
-            },
-            {
-              type: "list",
-              message: "Employee Role:",
-              choices: [Manager, Engineer, Intern],
-              name: "role",
-              default: "Manager, Engineer, Intern",
             },
           ])
           .then((data) => {
@@ -70,8 +70,15 @@ function generateTeam() {
                     data.email,
                     manage.officeNum
                   );
-                  finalArray.push(manager);
-                  generateTeam();
+                  if (
+                    finalArray.find((element) => element.role === "Manager")
+                  ) {
+                    console.log("One Manager at a time please!");
+                    generateTeam();
+                  } else {
+                    finalArray.push(manager);
+                    generateTeam();
+                  }
                 });
             } else if (data.role === "Engineer") {
               inquirer
