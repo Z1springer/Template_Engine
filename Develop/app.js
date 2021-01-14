@@ -10,11 +10,102 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
-
+function generateTeam() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "Employee Name:",
+        name: "name",
+        default: "Name of Employee",
+      },
+      {
+        type: "input",
+        message: "Employee Email:",
+        name: "email",
+        default: "email@email.com",
+      },
+      {
+        type: "input",
+        message: "Employee ID:",
+        name: "id",
+        default: "1,2,3,4,5",
+      },
+      {
+        type: "list",
+        message: "Employee Role:",
+        choices: [Manager, Engineer, Intern],
+        name: "role",
+        default: "Manager, Engineer, Intern",
+      },
+    ])
+    .then((primus) => {
+      // primus being the first user input
+      if (primus.role.Manager === true) {
+        inquirer
+          .prompt([
+            {
+              type: "input",
+              message: "Office Number:",
+              name: "officeNum",
+              default: "###",
+            },
+          ])
+          .then((secundus) => {
+            const manager = new Manager(
+              primus.name,
+              primus.id,
+              primus.email,
+              secundus.officeNum
+            );
+          });
+      } else if (primus.role.Engineer === true) {
+        inquirer
+          .prompt([
+            {
+              type: "input",
+              message: "GitHub User:",
+              name: "github",
+              default: "GitHubUser",
+            },
+          ])
+          .then((tertius) => {
+            const engineer = new Engineer(
+              primus.name,
+              primus.id,
+              primus.email,
+              tertius.github
+            );
+          });
+      } else if (primus.role.Intern === true) {
+        inquirer
+          .prompt([
+            {
+              type: "input",
+              message: "School and Degree:",
+              name: "school",
+              default: "Graduate of SchoolName with a DegreeName",
+            },
+          ])
+          .then((quartus) => {
+            const intern = new Intern(
+              primus.name,
+              primus.id,
+              primus.email,
+              quartus.school
+            );
+          });
+      } else {
+        console.log("Please Select Employee Role");
+        generateTeam();
+      }
+    });
+}
 // After the user has input all employees desired, call the `render` function (required
+
+generateTeam();
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
 
